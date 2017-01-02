@@ -1,0 +1,3 @@
+build/beamium=/usr/bin/
+deb/config.yaml=/etc/beamium/config.yaml
+deb/logrotate=/etc/logrotate.d/beamium
