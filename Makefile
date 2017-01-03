@@ -1,17 +1,21 @@
 BUILD_DIR=./build
 
+.PHONY: build
+build: clean
+	mkdir -p $(BUILD_DIR)
+	wget -P $(BUILD_DIR) https://github.com/runabove/beamium/archive/v$(VERSION).zip
+	unzip -q -d $(BUILD_DIR) $(BUILD_DIR)/v$(VERSION).zip
+	cd $(BUILD_DIR)/beamium-$(VERSION) && cargo build --release
+	mv $(BUILD_DIR)/beamium-$(VERSION)/target/release/beamium $(BUILD_DIR)/
+
 .PHONY: deb
-deb: clean
-		mkdir -p $(BUILD_DIR)
-		wget -P $(BUILD_DIR) https://github.com/runabove/beamium/archive/v$(VERSION).zip
-		unzip -q -d $(BUILD_DIR) $(BUILD_DIR)/v$(VERSION).zip
-		cd $(BUILD_DIR)/beamium-$(VERSION) && cargo build --release
-		mv $(BUILD_DIR)/beamium-$(VERSION)/target/release/beamium $(BUILD_DIR)/
+deb:
+		rm -f beamium*.deb
 		fpm -m "<kevin@d33d33.fr>" \
 		  --description "Prometheus to Warp10 metrics forwarder" \
 			--url "https://github.com/runabove/beamium" \
 			--license "BSD-3-Clause" \
-			--version $(VERSION) \
+			--version $(shell echo $$(./build/beamium --version | awk '{print $$2}')) \
 			-n beamium \
 			-d logrotate \
 			-s dir -t deb \
@@ -32,4 +36,3 @@ deb: clean
 .PHONY: clean
 clean:
 		rm -rf build
-		rm -f beamium*.deb
