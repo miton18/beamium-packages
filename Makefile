@@ -29,6 +29,8 @@ deb:
 			--directories /var/log/beamium \
 			--before-install deb/before-install.sh \
 			--after-install deb/after-install.sh \
+			--before-upgrade deb/before-upgrade.sh \
+			--after-upgrade deb/after-upgrade.sh \
 			--before-remove deb/before-remove.sh \
 			--after-remove deb/after-remove.sh \
 			--inputs deb/input
