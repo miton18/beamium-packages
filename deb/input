@@ -1,0 +1,3 @@
+build/noderig=/usr/bin/
+deb/config.yaml=/etc/noderig/config.yaml
+deb/logrotate=/etc/logrotate.d/noderig
