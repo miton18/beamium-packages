@@ -13,10 +13,7 @@ RUNAS=noderig
 
 PIDFILE=/var/run/noderig.pid
 WORKDIR=/tmp
-LOGFILE=/var/log/noderig.log
-
-OUTLOG="/var/log/noderig/noderig.out"
-ERRLOG="/var/log/noderig/noderig.err"
+LOGFILE=/var/log/noderig/noderig.log
 
 get_pid() {
     cat "$PIDFILE"
@@ -32,7 +29,7 @@ start() {
     else
         echo 'Starting noderig'
         cd "$WORKDIR"
-        local cmd="$CMD >> "$OUTLOG" 2>> "$ERRLOG" & echo \$!"
+        local cmd="$CMD >> "$LOGFILE" 2>&1 & echo \$!"
         su -c "$cmd" $RUNAS > "$PIDFILE"
 
         if ! is_running; then
