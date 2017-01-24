@@ -47,7 +47,7 @@ start() {
 stop() {
     if is_running; then
         echo -n "Stopping noderig.."
-        kill -2 `get_pid`
+        kill `get_pid`
         for i in {1..10}
         do
             if ! is_running; then
