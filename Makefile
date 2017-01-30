@@ -13,7 +13,7 @@ build: clean
 deb:
 		rm -f noderig*.deb
 		fpm -m "<kevin@d33d33.fr>" \
-		  --description "Semsision exporter for OS metrics" \
+		  --description "Sensision exporter for OS metrics" \
 			--url "https://github.com/runabove/noderig" \
 			--license "BSD-3-Clause" \
 			--version $(shell echo $$(./build/noderig version | awk '{print $$2}')) \
