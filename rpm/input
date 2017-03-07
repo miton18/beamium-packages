@@ -1,0 +1,2 @@
+build/noderig=/usr/bin/
+deb/config.yaml=/etc/noderig/config.yaml
