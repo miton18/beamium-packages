@@ -15,7 +15,7 @@ deb:
 		  --description "Prometheus to Warp10 metrics forwarder" \
 			--url "https://github.com/runabove/beamium" \
 			--license "BSD-3-Clause" \
-			--version $(shell echo $$(./build/beamium --version | awk '{print $$2}')) \
+			--version $(shell echo $$(./build/beamium --version | awk '{print $$2}')-$$(lsb_release  -cs)) \
 			-n beamium \
 			-d logrotate \
 			-s dir -t deb \
